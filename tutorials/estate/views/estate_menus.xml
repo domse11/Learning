@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <menuitem id="estate.menu_estate_root" name="Real Estate" sequence="10" />
+
+    <!-- Advertisements -->
+    <menuitem id="estate.menu_estate_property" name="Advertisements" parent="estate.menu_estate_root" sequence="10" />
+
+    <!-- Advertisements Submenu Properties -->
+    <menuitem id="estate.menu_estate_property_action" name="Properties" parent="estate.menu_estate_property" action="estate.action_estate_property" sequence="10" />
+
+    <!-- Settings -->
+    <menuitem id="estate.menu_estate_property_type" name="Settings" parent="estate.menu_estate_root" sequence="20" />
+
+    <!-- Settings Submenu Property Types -->
+    <menuitem id="estate.menu_estate_property_type_action" name="Property Types" parent="estate.menu_estate_property_type" action="estate.action_estate_property_type" sequence="10" />
+
+    <!-- Settings Submenu Property Tags -->
+    <menuitem id="estate.menu_estate_property_tag_action" name="Property Tags" parent="estate.menu_estate_property_type" action="estate.action_estate_property_tags" sequence="20" />
+
+    <record id="action_estate_property_tags" model="ir.actions.act_window">
+        <field name="name">Property Tags</field>
+        <field name="res_model">estate.property.tag</field>
+        <field name="view_mode">list,form</field>
+        <field name="views" eval="[
+        (ref('view_estate_property_tag_tree'), 'tree'),
+        (ref('view_estate_property_tag_form'), 'form')
+    ]"/>
+    </record>
+
+
+</odoo>

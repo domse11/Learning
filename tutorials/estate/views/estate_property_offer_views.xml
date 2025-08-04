@@ -1,0 +1,47 @@
+<odoo>
+    <!-- List View -->
+    <record id="view_estate_property_offer_tree" model="ir.ui.view">
+        <field name="name">estate.property.offer.list</field>
+        <field name="model">estate.property.offer</field>
+        <field name="arch" type="xml">
+            <list string="Offers" decoration-danger="status == 'refused'" decoration-success="status == 'accepted'">
+                <field name="price"/>
+                <field name="partner_id"/>
+                <field name="validity"/>
+                <field name="date_deadline"/>
+                <field name="status"/>
+
+                <!-- Icon Buttons for Accept / Refuse -->
+                <button name="action_accept_offer" type="object" icon="fa-check" title="accept" class="btn btn-sm btn-success" invisible="status == 'accepted'"/>
+
+                <button name="action_refuse_offer" type="object" icon="fa-times" title="decline" class="btn btn-sm btn-danger" invisible="status == 'refused'"/>
+
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_estate_property_offer_form" model="ir.ui.view">
+        <field name="name">estate.property.offer.form</field>
+        <field name="model">estate.property.offer</field>
+        <field name="arch" type="xml">
+            <form string="Offer">
+
+                <header>
+                    <button name="action_accept_offer" type="object" string="Accept" class="btn-primary" modifiers='{"invisible": [["status", "!=", "new"]]}'/>
+
+                    <button name="action_refuse_offer" type="object" string="Refuse" class="btn-secondary" modifiers='{"invisible": [["status", "!=", "new"]]}'/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="price"/>
+                        <field name="partner_id"/>
+                        <field name="validity"/>
+                        <field name="date_deadline"/>
+                        <field name="status"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
